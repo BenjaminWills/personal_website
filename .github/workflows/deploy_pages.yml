@@ -25,6 +25,4 @@ jobs:
       
       - name: Deploy code to pages
         run: |
-          git config --global user.name $user_name
-          git config --global user.email $user_email
           make deploy_github_pages
