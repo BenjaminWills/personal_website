@@ -6,9 +6,23 @@ The end goal is to host this website on `AWS` and have it be publically accessab
 
 ## Blog ideas
 
+### Features
+
+1. Categories:
+   - Statistics
+   - Machine learning
+   - Books
+   - Films
+2. Search engine:
+   - Could be a cool project
+3. Dynamic creation using the page
+
+### contents
 1. Creating a website using AWS
 2. Bayesian inference
 3. General understanding of statistics
 4. Machine learning
    1. Graph neural networks
    2. Convolutional nerual networks
+5. Book reviews
+   A. Rating system
