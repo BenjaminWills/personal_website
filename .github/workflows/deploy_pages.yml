@@ -26,13 +26,18 @@ jobs:
       - name: Install website dependencies
         run: npm --prefix ./website install
       
-      - name: Install react scripts
-        run: npm i react-scripts
+      # - name: Install react scripts
+      #   run: npm i react-scripts
 
       - name: Authenticate VM
         uses: oleksiyrudenko/gha-git-credentials@v2-latest
         with:
           token: '${{ secrets.MY_GITHUB_TOKEN }}'
+
+      - name: Add origin
+        run: |
+          git remote set-url origin git@github.com:BenjaminWills/personal_website.git
+
 
       - name: Deploy code to pages
         run: |
