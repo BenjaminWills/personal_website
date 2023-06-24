@@ -29,6 +29,11 @@ jobs:
       - name: Install react scripts
         run: npm i react-scripts
 
+      - name: Authenticate VM
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: '${{ secrets.MY_GITHUB_TOKEN }}'
+
       - name: Deploy code to pages
         run: |
           make deploy_github_pages
