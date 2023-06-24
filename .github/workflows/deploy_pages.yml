@@ -20,8 +20,11 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
 
-      - name: Install dependencies
+      - name: Install base dependencies
         run: npm install
+
+      - name: Install website dependencies
+        run: npm --prefix ./website install
       
       - name: Install react scripts
         run: npm i react-scripts
