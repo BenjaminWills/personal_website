@@ -36,7 +36,7 @@ jobs:
 
       - name: Add origin
         run: |
-          git remote set-url origin git@github.com:BenjaminWills/personal_website.git
+          git remote add origin https://github.com/BenjaminWills/personal_website.git
 
 
       - name: Deploy code to pages
