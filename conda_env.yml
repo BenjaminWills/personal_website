@@ -1,0 +1,13 @@
+name: personal_website
+channels:
+  - conda-forge
+dependencies:
+  - ca-certificates=2023.5.7=hf0a4a13_0
+  - icu=72.1=he12128b_0
+  - libcxx=16.0.6=h4653b0c_0
+  - libuv=1.44.2=he4db4b2_0
+  - libzlib=1.2.13=h53f4e23_5
+  - nodejs=18.15.0=h7f372e8_1
+  - openssl=3.1.1=h53f4e23_1
+  - zlib=1.2.13=h53f4e23_5
+prefix: /opt/homebrew/Caskroom/miniforge/base/envs/personal_website
