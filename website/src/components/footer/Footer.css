@@ -28,9 +28,12 @@
   display: flex;
   justify-content: center;
   align-items: center; 
-  
+
 }
 
 .icon {
   font-size: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+  
 }
