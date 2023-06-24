@@ -20,17 +20,13 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
 
-      - name: Install base dependencies
-        run: npm install
-
-      - name: Install website dependencies
-        run: npm --prefix ./website install
-
-      - name: Authenticate VM
-        uses: oleksiyrudenko/gha-git-credentials@v2-latest
-        with:
-          token: '${{ secrets.MY_GITHUB_TOKEN }}'
-          
-      - name: Deploy code to pages
+      - name: Install  dependencies
         run: |
-          make deploy_github_pages
+          npm install
+          npm --prefix ./website install
+
+      - name: deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.GH-PAGES-DEPLOY-KEY }}
+          publish_dir: ./website
