@@ -6,23 +6,22 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+    - name: Build
+      run: |
+        npm install
+        npm --prefix ./website install
 
-      - name: Install  dependencies
-        run: |
-          npm install
-          npm --prefix ./website install
-
-      - name: deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.GH_DEPLOY_SECRET_KEY }}
-          publish_dir: ./website
+    - name: Deploy
+      run: |
+        git config --global user.name 'BenjaminWills'
+        git config --global user.email 'benjaminwills047@gmail.com'
+        git remote set-url origin https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}    
+        npm --prefix ./website run deploy
