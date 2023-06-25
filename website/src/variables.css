@@ -1,6 +1,10 @@
 /* THIS FILE CONTAINS THE GLOBAL VARS */
 
 :root {
+    /* Footer vars */
     --footer-background-colour: #f5f5f5;
-    --sidebar-colour: #f5f5f5;
+
+    /* Sidebar vars */
+    --sidebar-colour: #1484ac;
+    --hover-colour: #aed2bc;
 }
