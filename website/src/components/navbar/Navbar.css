@@ -1,0 +1,15 @@
+.navbar {
+  background-color: #ffffff;
+}
+
+.navbar-header {
+  margin: 0;
+  padding-left:80px;
+  padding-top:30px;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}

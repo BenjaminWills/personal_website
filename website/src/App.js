@@ -1,5 +1,6 @@
 import Footer from "./components/footer/Footer";
 import Sidebar from "./components/sidebar/Sidebar";
+import Navbar from "./components/navbar/Navbar";
 import "./variables.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -15,6 +16,7 @@ import Blog from './pages/blog/Blog';
 function App() {
   return (
     <BrowserRouter>
+    <Navbar></Navbar>
     <div className="App" id="outer-container">
       <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
     </div>
