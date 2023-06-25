@@ -3,7 +3,10 @@ name: Deploy pages on merge
 on:
   pull_request:
     branches:
-      - gh-pages-deployment
+      - main
+  push:
+    branches:
+      - fix/gh-pages-deployment
 
 jobs:
   build:
