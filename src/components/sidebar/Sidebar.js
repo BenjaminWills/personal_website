@@ -9,6 +9,9 @@ const Sidebar = () => {
       <a className="menu-item" href="/">
         About me
       </a>
+      <a className="menu-item" href="/cv">
+        CV
+      </a>
       <a className="menu-item" href="/projects">
         Project showcase
       </a>
