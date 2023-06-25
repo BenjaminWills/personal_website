@@ -5,8 +5,9 @@ import "./variables.css";
 function App() {
   return (
     <div>
-      <h1>HELLO WORLD!</h1>
-      <Sidebar></Sidebar>
+      <div className="App" id="outer-container">
+      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+    </div>
       <Footer></Footer>
     </div>
   );
