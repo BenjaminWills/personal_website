@@ -1,4 +1,4 @@
-[![Deploy pages on merge](https://github.com/BenjaminWills/personal_website/actions/workflows/deploy_pages.yml/badge.svg)](https://github.com/BenjaminWills/personal_website/actions/workflows/deploy_pages.yml)
+[![Deploy pages on merge](https://github.com/BenjaminWills/personal_website/actions/workflows/deploy_pages.yml/badge.svg)](https://github.com/BenjaminWills/personal_website/actions/workflows/deploy_pages.yml) ![GitHub issues](https://img.shields.io/github/issues/BenjaminWills/personal_website) ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/BenjaminWills/personal_website) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/BenjaminWills/personal_website)
 
 # Personal Website
 
