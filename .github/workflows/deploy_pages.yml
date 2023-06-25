@@ -18,7 +18,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build
-      run: npm install
+      run: |
+        npm install
+        npm --prefix ./website install
 
     - name: Test
       run: npm run test
