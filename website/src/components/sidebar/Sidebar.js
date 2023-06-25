@@ -7,16 +7,16 @@ const Sidebar = () => {
   return (
     <Menu>
       <a className="menu-item" href="/">
-        Home
+        About me
       </a>
       <a className="menu-item" href="/salads">
-        Salads
+        Project showcase
       </a>
       <a className="menu-item" href="/pizzas">
-        Pizzas
+        Blog
       </a>
       <a className="menu-item" href="/desserts">
-        Desserts
+        Tutoring
       </a>
     </Menu>
   );
