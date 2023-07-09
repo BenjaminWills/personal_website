@@ -1,7 +1,17 @@
-import React from 'react'
+import React from 'react';
+import './Blog.css';
+import BlogContainer from './BlogComponents/BlogContainer/BlogContainer';
 
-export default function Blog() {
+function Blog() {
   return (
-    <div><h1>THIS IS A TEST</h1></div>
-  )
+    <div class='page-div'>
+      <BlogContainer
+        title = "Ben's first blog post"
+        summary = "My first ever blog post on my website!"
+        tags = "First"
+      />
+    </div>
+    )
 }
+
+export default Blog;
