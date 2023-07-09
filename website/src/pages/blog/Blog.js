@@ -14,6 +14,16 @@ function Blog() {
         ]}
         href = "/personal_website/cv"
       />
+      <br/>
+      <BlogContainer
+        title = "Ben's first blog post"
+        summary = "My first ever blog post on my website!"
+        tags = {[
+          {"name":"tag 1"},
+          {"name":"tag 2"}
+        ]}
+        href = "/personal_website/cv"
+      />
     </div>
     )
 }
