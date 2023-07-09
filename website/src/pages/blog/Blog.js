@@ -4,7 +4,7 @@ import BlogContainer from './BlogComponents/BlogContainer/BlogContainer';
 
 function Blog() {
   return (
-    <div class='page-div'>
+    <div className='page-div'>
       <BlogContainer
         title = "Ben's first blog post"
         summary = "My first ever blog post on my website!"
@@ -12,6 +12,7 @@ function Blog() {
           {"name":"tag 1"},
           {"name":"tag 2"}
         ]}
+        href = "/personal_website/cv"
       />
     </div>
     )

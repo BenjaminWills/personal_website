@@ -1,6 +1,6 @@
 export function splitTagsToArray(tags){
-    // Split the tags by commas
+    // Create an array of tags from the objects passed
     const tagList = tags.map(
-        tag => <li>{tag.name}</li>)
+        tag => <li key={tag.name}>{tag.name}</li>)
     return tagList
 }
