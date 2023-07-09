@@ -4,8 +4,8 @@
 
 .navbar-header {
   margin: 0;
-  padding-left:80px;
-  padding-top:30px;
+  padding-left:300px;
+  padding-top:20px;
 }
 
 .navbar-nav {
@@ -13,3 +13,8 @@
   list-style-type: none;
   padding: 0;
 }
+
+.photo {
+  height: 40px;
+  width: 40px; 
+ }
