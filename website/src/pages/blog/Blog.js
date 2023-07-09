@@ -8,7 +8,10 @@ function Blog() {
       <BlogContainer
         title = "Ben's first blog post"
         summary = "My first ever blog post on my website!"
-        tags = "First"
+        tags = {[
+          {"name":"tag 1"},
+          {"name":"tag 2"}
+        ]}
       />
     </div>
     )

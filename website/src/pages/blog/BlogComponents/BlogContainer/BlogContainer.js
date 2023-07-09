@@ -1,5 +1,6 @@
 import React from 'react';
 import './BlogContainer.css';
+import { splitTagsToArray } from './utils';
 
 export default function BlogContainer({
     title = 'Title',
@@ -7,11 +8,11 @@ export default function BlogContainer({
     tags = 'Tag'
 }) {
   return (
-    <div class = 'blog-container'>
+    <div className = 'blog-container'>
         <h1>{title}</h1>
         <p>{summary}</p>
         <h2>Tags:</h2>
-        <li>{tags}</li>
+        <ul>{splitTagsToArray(tags)}</ul>
     </div>
   )
 }
