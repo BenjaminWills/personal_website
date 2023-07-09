@@ -12,9 +12,8 @@ export default function BlogContainer({
   return (
     <div className = 'blog-container font-link'>
         <h1 ><a className='title' href={href}>{title}</a></h1>
-        <p>{summary}</p>
-        <h2>Tags:</h2>
-        <ul>{splitTagsToArray(tags)}</ul>
+        <p className='summary'>{summary}</p>
+        <ul className='tag-list'>{splitTagsToArray(tags)}</ul>
     </div>
   )
 }

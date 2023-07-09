@@ -9,8 +9,7 @@ function Blog() {
         title = "Ben's first blog post"
         summary = "My first ever blog post on my website!"
         tags = {[
-          {"name":"tag 1"},
-          {"name":"tag 2"}
+          {"name":"Literature"},
         ]}
         href = "/personal_website/cv"
       />
@@ -19,8 +18,8 @@ function Blog() {
         title = "Ben's first blog post"
         summary = "My first ever blog post on my website!"
         tags = {[
-          {"name":"tag 1"},
-          {"name":"tag 2"}
+          {"name":"Mathematics"},
+          {"name":"Art"}
         ]}
         href = "/personal_website/cv"
       />
