@@ -10,8 +10,8 @@ export default function BlogContainer({
     href = 'location'
 }) {
   return (
-    <div className = 'blog-container'>
-        <h1 ><a href={href}>{title}</a></h1>
+    <div className = 'blog-container font-link'>
+        <h1 ><a className='title' href={href}>{title}</a></h1>
         <p>{summary}</p>
         <h2>Tags:</h2>
         <ul>{splitTagsToArray(tags)}</ul>

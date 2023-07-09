@@ -1,9 +1,36 @@
 .blog-container{
+    /* Sizing */
     width: 70%;
     height: 20%;
-    border: 15px solid green;
     padding-left: 5%;
     padding-bottom: 5%;
-    border-radius: 25px;
     margin: 20px;
+
+    /* Appearance */
+    border: 15px solid var(--sidebar-colour);
+    border-radius: 25px;
+}
+
+
+.title{
+
+}
+
+.title:visited { 
+ text-decoration: none; 
+ color: black; 
+}
+
+.title:hover { text-decoration: none; color:green; }
+.title:focus { text-decoration: none; color:black; }
+.title:active { text-decoration: none; color:teal; }
+
+.summary{
+
+}
+
+.tag{
+}
+
+.tag-list{
 }
