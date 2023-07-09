@@ -2,9 +2,8 @@
     /* Sizing */
     width: 70%;
     height: 8%;
-    padding-left: 5%;
-    padding-bottom: 5%;
     margin: 10px;
+    padding-left: 2%;
 
     /* Appearance */
     border: 15px solid var(--sidebar-colour);
