@@ -7,7 +7,8 @@ export default function BlogContainer({
     title = 'Title',
     summary = 'Summary',
     tags = [{'name':'tagName'}],
-    href = 'location'
+    href = 'location',
+    id = '1'
 }) {
   return (
     <div className = 'blog-container font-link'>
