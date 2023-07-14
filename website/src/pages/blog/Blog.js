@@ -6,12 +6,12 @@ function Blog() {
   return (
     <div className='page-div'>
       <BlogContainer
-        title = "Ben's first blog post"
+        title = "How to make a blog post!"
         summary = "My first ever blog post on my website!"
         tags = {[
-          {"name":"Literature"},
+          {"name":"Tutorial"},
         ]}
-        href = "/personal_website/cv"
+        href = "/personal_website/blog/test-page"
       />
       <br/>
       <BlogContainer

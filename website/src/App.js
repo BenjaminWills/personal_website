@@ -9,7 +9,10 @@ import CV from './pages/CV/CV';
 import Tutoring from './pages/tutoring/Tutoring';
 import AboutMe from './pages/aboutMe/AboutMe';
 import Projects from './pages/projects/Projects';
+
+// BLOG
 import Blog from './pages/blog/Blog';
+import TestPage from "./pages/blog/BlogComponents/pages/TestPage";
 
 
 function App() {
@@ -25,6 +28,7 @@ function App() {
         <Route path="/personal_website/cv" element={<CV />} />
         <Route path="/personal_website/tutoring" element={<Tutoring />} />
         <Route path="/personal_website/blog" element={<Blog />} />
+        <Route path="/personal_website/blog/test-page" element={<TestPage />} />
     </Routes>
   </BrowserRouter>
   );
