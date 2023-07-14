@@ -1,5 +1,9 @@
 import React from 'react'
 
+const description = `
+We want the 
+`
+
 export default function BlogPage({
   title,
   content

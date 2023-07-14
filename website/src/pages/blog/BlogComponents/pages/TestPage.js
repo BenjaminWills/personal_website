@@ -1,6 +1,6 @@
 import React from 'react'
 import BlogPage from '../BlogPage/BlogPage';
-import CodeBlock from '../BlogPage/CodeBlock';
+import CodeBlock from '../CodeBlock/CodeBlock'
 
 const code = `import boto3
 
