@@ -1,6 +1,7 @@
 import React from 'react'
 import BlogPage from '../BlogPage/BlogPage';
 import CodeBlock from '../CodeBlock/CodeBlock'
+import MathsBlock from '../MathsBlock/MathsBlock';
 
 const code = `import copy
 from typing import Dict, List, Union
@@ -245,6 +246,8 @@ export default function TestPage() {
         title = "Hello, welcome to my first blog post!"
         content= <CodeBlock code={code}></CodeBlock>
         ></BlogPage>
+        <MathsBlock
+        content={"What is $(3\\frac{1}{2})$"}/>
        
     </div>
   )
