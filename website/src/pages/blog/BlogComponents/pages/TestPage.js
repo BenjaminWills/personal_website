@@ -3,251 +3,87 @@ import BlogPage from '../BlogPage/BlogPage';
 import CodeBlock from '../CodeBlock/CodeBlock'
 import MathsBlock from '../MathsBlock/MathsBlock';
 
-const code = `import copy
-from typing import Dict, List, Union
+import decimal_to_n_ary from './utilities';
 
-import matplotlib.pyplot as plt
-import networkx as nx
-import numpy as np
-from tqdm import tqdm
+import '../BlogPage/BlogPage.css';
 
-ROUTES = Dict[
-    str, Dict[str, Union[List[str], float]]
-]  # Definition of the route dictionary, has keys corresponding to the distance and the route to that node
+const general_code = `
+def convert_decimal_to_n_ary(decimal: int, base:int) -> str:
+    """Converts from decimal numbers to n-arry so long as n <= 9.
+    We could add a dictionary detailing extra characters to go to as high a base as we like.
 
-NODE_NAME = Union[str, int, object]  # The datatypes that can represent a node name
+    Parameters
+    ----------
+    decimal : int
+        Any decimal number
 
-CONNECTION_STYLE = "arc3"  # https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.ConnectionStyle.html#matplotlib.patches.ConnectionStyle
+    Returns
+    -------
+    str
+        The binary output
+    """
+    n_string = ''
+    while decimal // base != 0:
+        n_string += str(decimal % base)
+        decimal  = decimal // base
+    n_string += str(decimal)
+    # Return reversed binary string
+    return n_string[::-1]
 
+# Run checks
+bases = list(range(2,10))
+nums = [80,90,1,0,2332]
 
-class Network:
-    def __init__(
-        self, adjacency_matrix: np.array, node_names: List[NODE_NAME] = None
-    ) -> None:
-        self.adjacency_matrix = adjacency_matrix
-        self.num_nodes = adjacency_matrix.shape[0]
-        self.node_names = node_names or range(self.num_nodes)
-
-    def get_shortest_distances(self, node_name: str) -> ROUTES:
-        """Uses Dijkstras algorithm to find the shortest distances to all of the nodes
-
-        Parameters
-        ----------
-        node : int
-            Starting node
-
-        Returns
-        -------
-        ROUTES:
-            A dictionary containing information on the distance to a node and it's path
-        """
-        # Initialise progress bar
-        pbar = tqdm(total=self.num_nodes)
-
-        # Initialise nodes to visit
-        self.unvisited_nodes = {n: 1 for n in range(0, self.num_nodes)}
-        # Initialise route dictionary
-        routes = {node_name: {"distance": 0, "route": [node_name]}}
-
-        node = self.node_names.index(node_name)
-        # Visit source node
-        self.unvisited_nodes[node] = 0
-
-        last_visited = node
-
-        # Get initial distance matrix
-        distance_matrix = self.init_distance_matrix(node)
-        # Start loop
-        while self.still_nodes_to_visit(self.unvisited_nodes):
-            # Find nearest neighbours to the most recent visited node
-            # Deep copy to avoid scoping issues
-
-            nearest_neighbours = self.adjacency_matrix[last_visited, :]
-            nearest_neighbour = self.get_nearest_neighbour(nearest_neighbours)
-
-            if nearest_neighbour == -1:
-                # EDGE CASE OF DISCONNECTED GRAPHS
-                break
-
-            # The issue is we need to update ALL of the distances as this new vertex could reveal
-            # a shorter route, so we do a for loop through all the applicable neighbours
-            for index, neighbour in enumerate(nearest_neighbours):
-                # A neighbour is an index in which the distances > 0 (as this means there is a direct link)
-                if neighbour:
-                    # Define the new distance as the distance to the previous node plus that neighbour distance
-                    # if this is less than the distance in the distance matrix, we have found a faster route
-                    new_distance = distance_matrix[last_visited] + neighbour
-                    if new_distance < distance_matrix[index]:
-                        distance_matrix[index] = new_distance
-
-                        nearest_neighbour_node_name = self.node_names[index]
-                        last_visited_node_name = self.node_names[last_visited]
-                        updated_route = routes[last_visited_node_name]["route"] + [
-                            nearest_neighbour_node_name
-                        ]
-
-                        routes[nearest_neighbour_node_name] = {
-                            "distance": distance_matrix[index],
-                            "route": updated_route,
-                        }
-
-            self.unvisited_nodes[nearest_neighbour] = 0
-            pbar.update(1)
-
-            last_visited = nearest_neighbour
-        pbar.update(1)
-        return routes
-
-    def init_distance_matrix(self, source_node: int) -> np.array:
-        """Initialise n dimensional vector to hold distances from the starting node
-        These will be arbritrarily large apart from the base node.
-
-        Parameters
-        ----------
-        source_node : int
-            The index of the source node
-
-        Returns
-        -------
-        np.array
-            An array consisting of infinities and one 0 at the index of the source node
-        """
-        distance_matrix = np.full(self.adjacency_matrix.shape[0], np.inf)
-        distance_matrix[source_node] = 0
-        return distance_matrix
-
-    def still_nodes_to_visit(self, unvisited_nodes: dict[str, int]) -> bool:
-        """Returns True if there are still nodes that have not been visited
-
-        Parameters
-        ----------
-        unvisited_nodes : dict[str, int]
-            A dictionary with keys being the indexes of the nodes and the value being 1 if the node
-            has not been visited yet and 0 otherwise
-
-        Returns
-        -------
-        bool
-            True if there are still nodes that have not been visited, False otherwise
-        """
-        return list(unvisited_nodes.values()) != [0] * self.num_nodes
-
-    def get_nearest_neighbour(self, nearest_neighbours: np.array) -> int:
-        """Gets the nearest neighbour to a vertex
-
-        Parameters
-        ----------
-        last_visited_node : int
-            The index of the previously visited node
-
-        Returns
-        -------
-        int
-            The index of the nearest neighbour
-        """
-
-        # EDGE CASE: When there are no nearest neighbours you must exit the alg!
-
-        if nearest_neighbours.any() == 0:
-            return -1
-        else:
-            nearest_neighbours_copy = copy.deepcopy(nearest_neighbours)
-            maximus = nearest_neighbours_copy.max()
-            for index, neighbour in enumerate(nearest_neighbours_copy):
-                already_visited: bool = self.unvisited_nodes[index] == 0
-                not_directly_connected: bool = neighbour == 0
-
-                if already_visited or not_directly_connected:
-                    nearest_neighbours_copy[index] = maximus + 1
-            nearest_neighbour = (
-                nearest_neighbours_copy.argmin()
-            )  # Nearest neighbour node name
-            return nearest_neighbour
-
-    def draw_graph(self, display: bool = False) -> nx.DiGraph:
-        """
-        Draws the graph with the weights and the node names
-        """
-        graph = nx.DiGraph(self.adjacency_matrix)
-        graph = nx.relabel_nodes(
-            graph,
-            {
-                node_index: node_name
-                for node_index, node_name in zip(range(self.num_nodes), self.node_names)
-            },
-        )
-        if display:
-            pos = nx.spring_layout(graph)
-            nx.draw_networkx(graph, pos, connectionstyle=CONNECTION_STYLE)
-            labels = nx.get_edge_attributes(graph, "weight")
-            nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels)
-            plt.show()
-        return graph
-
-    def highlight_fastest_path(
-        self, from_node: NODE_NAME, to_node: NODE_NAME, ax=None, display: bool = False
-    ) -> nx.DiGraph:
-        """Highlights the fastest path from any two nodes on the graph
-
-        Parameters
-        ----------
-        from_node : str
-            Starting node name
-        to_node : str
-            Finishing node name
-        """
-        graph = nx.DiGraph(self.adjacency_matrix)
-        graph = nx.relabel_nodes(
-            graph, {n: name for n, name in zip(range(self.num_nodes), self.node_names)}
-        )
-        if display:
-            routes = self.get_shortest_distances(from_node)
-            path_route = routes[to_node]
-            distance, node_list = path_route.values()
-            pos = nx.spring_layout(graph)
-            nx.draw_networkx(graph, pos, connectionstyle=CONNECTION_STYLE)
-            labels = nx.get_edge_attributes(graph, "weight")
-
-            # Creating the edge colour map
-            node_pairs = []
-            num_route_nodes = len(node_list)
-            for index in range(num_route_nodes):
-                if index + 1 < num_route_nodes:
-                    node_pairs.append((node_list[index], node_list[index + 1]))
-            # This will give the list of all nodes to be coloured
-
-            colour_map = []
-            for edge in list(graph.edges):
-                if edge in node_pairs:
-                    colour_map.append("red")
-                else:
-                    colour_map.append("black")
-
-            # Colouring edges
-            nx.draw_networkx_edges(
-                graph,
-                pos,
-                edge_color=colour_map,
-                ax=ax,
-                connectionstyle=CONNECTION_STYLE,
-            )
-            # Drawing the edge distance labels
-            nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels, ax=ax)
-            # Display the output
-            plt.show()
-        return graph
-
+for base in bases:
+    for num in nums:
+        converted_num = convert_decimal_to_n_ary(num,base)
+        print(f"""
+        N-ary conversion
+        ==================================
+        base                     : {base}
+        decimal number           : {num}
+        n-ary representation     : {converted_num}
+        ==================================
+        """)
+        assert int(converted_num,base) == num
 `
 
 export default function TestPage() {
   return (
-    <div>
+    <div className='page-div'>
         <BlogPage
-        title = "Hello, welcome to my first blog post!"
-        content= <CodeBlock code={code}></CodeBlock>
+        title = "Turning decimal to n-arry numbers 🤓"
+        content= {<h2>Introduction</h2>}
         ></BlogPage>
-        <MathsBlock
-        content={"What is $(3\\frac{1}{2})$"}/>
+        <p>
+            In this blog post we explore the question of converting from decimal numbers to any other number system!     
+        </p>
+        <h2>An introduction to n-array numbers: binary numbers</h2>
+        <p>
+            We are used to decimal numbers like the number 10, in binary numbers 10 is expressed as 1010.
+            But how does this work?
+        </p>
+        <p>
+            It is first important to look at decimal numbers and how they are written, consider the number 144, 
+            this number can be broken up into 1's, 10's and 100's, so if we display it like a sum:
+            <MathsBlock content={`$144 = 100(1) + 10(4) +1(4)$`}></MathsBlock> We can see here that the digits
+            are simply the multipliers of powers of 10! the first digit is 10^0 (1) the second is 10^1 (10) and 
+            the third is 10^2 (100). This is how we represent decimal numbers, and binary numbers arent too different.
+        </p>
+        <p>
+            As you may have guessed, binary numbers use a base of 2 instead of 10, meaning that in each digits place a
+            power of 2 is represented. So the binary number: <MathsBlock content={`$1011 = 2^3(1)+2^2(0)+2^1(1)+2^0(0) = 11$`}></MathsBlock>
+            Note that on the left we have the binary numebr 1011 and on the right we have the decimal number 11. So, how do we 
+            convert between the two? Is there a programatic way?
+        </p>
+        <p>
+            To look into this we look at dividing by powers of two, say we have the number 10, 10 divided by 2 has a remainder of 0
+            meaning that there is no factor of one in the binary representation of 10, thus the final digit must be 0. 10 divided 
+        </p>
+        <br></br>
+        <CodeBlock
+            code = {general_code}
+        ></CodeBlock>
        
     </div>
   )
