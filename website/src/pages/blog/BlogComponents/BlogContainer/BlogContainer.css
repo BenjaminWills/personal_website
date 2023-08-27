@@ -1,0 +1,46 @@
+.blog-container{
+    /* Sizing */
+    width: 70%;
+    height: 8%;
+    margin: 10px;
+    padding-left: 2%;
+
+    /* Appearance */
+    border: 15px solid var(--sidebar-colour);
+    border-radius: 25px;
+}
+
+
+.title{
+}
+
+.title:visited { 
+ text-decoration: none; 
+ color: black; 
+}
+
+.title:hover { text-decoration: none; color:green; }
+.title:focus { text-decoration: none; color:black; }
+.title:active { text-decoration: none; color:teal; }
+
+.summary{
+}
+
+.tag{
+    background-color: rgba(0, 150, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    
+    /* Limit width of box to length of tag */
+    display: inline-block; 
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* Add margin so that the text is distinct */
+    margin-right: 5px;
+}
+
+.tag-list{
+}

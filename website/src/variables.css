@@ -8,3 +8,8 @@
     --sidebar-colour: #1484ac;
     --hover-colour: #aed2bc;
 }
+
+.font-link {
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
+ }
